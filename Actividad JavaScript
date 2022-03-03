@@ -1,0 +1,914 @@
+//Problema 1: Programa una función que cuente el número de caracteres de una cadena de texto, pe.mifunction("Hola mundo" devolvera 10.
+
+function miFunction(){
+    let saludo="Hola mundo";
+    document.getElementById("problema1").innerHTML = saludo.length;
+}
+miFunction();
+
+//Funcion declarada 
+
+function contarCaracteres(cadena =""){
+    if(!cadena){
+        console.warn("No has ingresado algun texto");
+    }else{
+        console.info(`El total de caractares de la cadena ${cadena} 
+        tiene ${cadena.length} caracteres`);
+    }
+}
+contarCaracteres();
+contarCaracteres("Hola mundo");
+
+//Utilizando un arrow function y la condicional del operador ternario 
+
+const contarCaracteres1 = (cadena1 = "") => 
+(!cadena1)
+?console.warn("No ingresaste ninguna cadena")
+:console.info(`El total de caractares de la cadena ${cadena1}tiene ${cadena1.length} caracteres`);
+contarCaracteres1();
+contarCaracteres1("Hola mundo a todos")
+
+//Problema 2: Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+
+function myfunction2(){
+    let saludo2="Hola mundo";
+    document.getElementById("problema2").innerHTML =saludo2.slice(0,4);
+}
+
+myfunction2();
+
+//Respuesta 
+
+//Utilizando un arrow function y la condicional del operador ternario
+
+const recortarTexto = (cadena2="",longitud=undefined)=>
+(!cadena2)
+?console.warn("No ingresaste ninguna cadena")
+:(longitud === undefined)
+    ?console.warn("No ingresaste la longitud para recortar el texto")
+    :console.info(cadena2.slice(0,longitud))
+
+recortarTexto("Hola mundo",4);//Hola
+recortarTexto("Hola Hola");//No ingresaste la longitud para recortar el texto
+recortarTexto();//No ingresaste ninguna cadena
+
+
+//Problema 3: Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal']. 
+
+function myfunction3(){
+    let saludo3="Hola que tal";
+    let conv=saludo3.split(" ");
+    document.getElementById("problema3").innerHTML=conv;
+    console.log(conv);
+}
+
+myfunction3();
+
+//Respuesta   
+
+//Utilizando un arrow function y la condicional del operador ternario
+const cadenaAArreglo = (cadena3 ="",serparador=undefined)=>
+(!cadena3)
+?console.warn("No ingresaste ninguna cadena")
+:(serparador === undefined)
+    ?console.warn("No ingresaste el caracter separador")
+    :console.info(cadena3.split(serparador));
+
+cadenaAArreglo();
+cadenaAArreglo("Hola Lalo",)
+cadenaAArreglo("Hola Mundo"," ");
+//Problema 4: Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+
+function myfunction4(){
+    let saludo4="Hola mundo";
+    console.log(saludo4.repeat(3));
+    document.getElementById("problema4").innerHTML = saludo4.repeat(3);
+}
+
+myfunction4();
+//Con Eval y Join
+let myTotal=3;
+eval(Array(myTotal+1).join(`console.log("Hola mundo");`));  
+
+//Respuesta 
+
+const repetirTexto = (texto= "", veces = undefined) =>{
+    if(!texto) return console.warn("No ingresaste un texto");
+    if (veces === undefined) return console.warn("No ingresaste el numero de veces a repetir el texto");
+    if (veces === 0)return console.log("El número de veces no puede ser 0");
+    if(Math.sign(veces) === -1)return console.error("El número de veces no puede ser negativo");
+
+    for(let i = 1; i <= veces;i++) console.info(`${texto}, ${i}`);
+}
+repetirTexto("Hola Mundo",3); //Hola Mundo, 1 | Hola Mundo, 2 | Hola Mundo, 3
+repetirTexto("Hola Mundo",0); //El número de veces no puede ser 0
+repetirTexto("Hola Mundo",-20); //El número de veces no puede ser negativo
+repetirTexto("Hola Mundo"); //No ingresaste el numero de veces a repetir el texto
+
+//Problema 5: Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+
+//Funcion declarada
+function myfunction5 (invertir=""){
+    if(!invertir){
+        console.warn("No ingresaste un texto");
+    }else{
+        console.log(`El texto ingresado se invierte: ${invertir.split('').reverse()} `)
+    }
+}
+
+myfunction5("Hola Mundo ");
+myfunction5();
+
+//Respuesta 
+
+//Funcion expresada
+const invertirCadena = (invCadena ="")=> 
+(!invCadena)
+?console.warn("No ingresaste un texto")
+:console.info(invCadena.split("").reverse().join(""));
+
+invertirCadena();
+invertirCadena("Hola Eduardo");
+
+//Problema 6: Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2
+
+function contadorOcurrencias(cadenatxt,subcadena){
+    if(!cadenatxt){
+        console.warn("No ingresaste un texto");
+    }else{
+        let contadorOcurrencias=0;
+        let posicion=0;
+
+        while((posicion = cadenatxt.indexOf(subcadena,posicion)) !== -1){
+            ++contadorOcurrencias;
+            posicion +=subcadena.length;
+        }
+        return contadorOcurrencias;
+    }
+}
+contadorOcurrencias();
+let cadenatxt="hola mundo adios mundo";
+console.log(contadorOcurrencias(cadenatxt,"mundo"));
+
+//Respuesta 
+
+//Funcion expresada
+
+const textoEnCadena = (cadenatxtCa="",textotxtCa="")=>{
+    if(!cadenatxtCa) return console.warn("No ingresaste el texto largo");
+    if(!textotxtCa) return console.warn("No ingresaste la palabra a evaluar");
+    let a=0,
+        contador1=0;
+        while(a !== -1 ){
+            a=cadenatxtCa.indexOf(textotxtCa,a);
+            if(a !== -1){
+                a++;
+                contador1++;
+            }
+        }
+        return console.info(`La palabra ${cadenatxtCa} se repite ${contador1} veces`);
+} 
+textoEnCadena();
+textoEnCadena("","mundo");
+textoEnCadena("Hola mundo adios mundo");
+textoEnCadena("Hola mundo adios mundo","mundo");
+//Problema 7: Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+
+function esPalindromo(cadenatxt=""){
+    if(!cadenatxt){
+        console.warn("No has ingresado un texto")
+    }else{
+    var normalized = cadenatxt.toLowerCase().match(/[a-z]/gi).reverse();
+    return normalized.join('') === normalized.reverse().join('');
+    }
+}
+esPalindromo();
+console.log(esPalindromo("Salas"));
+
+//Respuesta 
+
+const palindormo =(palabra="") =>{
+    if (!palabra) return console.warn("No ingresaste una palabra o frase");
+
+    palabra=palabra.toLocaleLowerCase();
+    let alReves=palabra.split("").reverse().join("");
+
+    return (palabra === alReves)
+    ?console.info(`Si es Palindromo, Palabra original ${palabra}, Palabra al revés ${alReves}`)
+    :console.info(`No es un palindromo, Palabra original ${palabra}, Palabra al revés ${alReves}`);
+}
+palindormo();
+palindormo("hola mundo");
+palindormo("Salas");
+
+//Problema 8: Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+function elimPatron (elimtext="", patron=""){
+    if(!elimtext){
+        console.warn("No has ingresado un texto");
+    }else{
+        let re = new RegExp(patron, "ig");
+        let resultado = elimtext.replace(re, "");
+      
+        return resultado;
+    }
+}
+elimPatron();
+let elimtext="xyz1, xyz2, xyz3, xyz4 y xyz5";
+console.log(elimPatron(elimtext,"xyz"));
+
+
+//Respuesta 
+
+const eliminarCaracteres = (elmtexto="", patron="") =>
+(!elmtexto)
+    ? console.warn("No ingresaste texto")
+    :(!patron)
+        ?console.warn("No ingresaste un patrón de caracteres")
+        :console.info(elmtexto.replace(new RegExp(patron,"ig"), ""));
+
+        eliminarCaracteres();
+        eliminarCaracteres("xyz1, xyz2, xyz3, xyz4 y xyz5");
+        eliminarCaracteres("xyz1, xyz2, xyz3, xyz4 y xyz5","xyz");
+        eliminarCaracteres("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","o")
+
+//Problema 9: Programa una función que obtenga un numero aleatorio entre 501 y 600.  
+
+//Respuesta:  Funcion declarada  utilizando dos parametros y el metodo random y el objeto math
+function aleatorioDecimales (min, max){
+    console.log(`El numero es con decimales :  ${Math.random() * (max - min) +min}`)
+}
+aleatorioDecimales(501,601);
+
+function aleatorioEntero (min, max){
+    console.log(`El numero con entero :  ${Math.floor(Math.random() * (max - min)) + min}`)
+}
+aleatorioEntero(501,601);
+
+//Funcion expresada,arrow function utilizando el objeto Math y los metodos round y random 
+
+const aleatorio = () => console.info(Math.round((Math.random()* 100)+ 500));
+aleatorio();
+
+//Problema 10: Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true
+
+//Respuesta 
+function numCapicua (numeroc=""){
+    if(!numeroc){
+        console.warn("No has ingresado un numero");
+    }else{
+        var num = (numeroc.toString().split('').reverse().join('')) === numeroc.toString()
+        return num;
+    }
+}
+
+numCapicua();
+let numeroc=222;
+console.log(numCapicua(numeroc));
+
+//Funcion expresada 
+
+const capicua = (numero = 0) =>{
+    if(!numero) return console.warn("No ingresaste un número");
+    if(typeof numero!=="number") return console.error(`El valor "${numero}" ingresado, NO es un numero capicua`);
+
+    numero=numero.toString();
+    let alReves = numero.split("").reverse().join("");
+
+    return (numero === alReves)
+    ?console.info(`Sí es capícua, Número original ${numero}, Número al revés ${alReves}`)
+    :console.info(`No es capícuam, Número original ${numero}, Número al revés ${alReves}`)
+}
+
+capicua();
+capicua("19");
+capicua({});
+capicua(2000);
+capicua(2020);
+capicua(18.99);
+capicua(212.212);
+
+//Problema 11: Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120. 
+
+//Respuesta
+function numFactorial (numfac=""){
+    if(!numfac){
+        console.warn("No has ingresado un numero");
+    }else{
+        let resultado= 1;
+        let i =1;
+
+        while(i <= numfac){
+            resultado *=i;
+            ++i;
+        }
+        return resultado;
+    }
+}
+numFactorial();
+let numfac=5;
+console.log(numFactorial(numfac));
+
+//Funcion expresada 
+const factorial = (numero = undefined) =>{
+    if(numero === undefined) return console.warn("No ingresaste un número");
+    if(typeof numero!=="number") return console.error(`El valor "${numero}" ingresado, NO es un numero`);
+    if(numero === 0) return console.error(`El número no puede ser 0`);
+    if(Math.sign(numero)=== -1) return console.error(`El numero no puede ser negativo`);
+
+    let factorial = 1;
+
+    for(let i = numero;i > 1 ;i --){
+        factorial *=i;
+    }
+    return console.log(`El factorial de ${numero} es ${factorial}`);
+}
+
+factorial();
+factorial("5");
+factorial([1,2,3,4,5]);
+factorial(0);
+factorial(-5);
+factorial(5);
+factorial(8);
+
+//12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true. 
+
+//Funcion expresada
+
+const numeroPrimo = (numero= undefined) =>{
+    if(numero === undefined) return console.warn("No ingresaste un número");
+    if(typeof numero!=="number") return console.error(`El valor "${numero}" ingresado, NO es un numero`);
+    if(numero === 0) return console.error(`El número no puede ser 0`);
+    if(numero === 1) return console.error(`El número no puede ser 1`);
+    if(Math.sign(numero)=== -1) return console.error(`El numero no puede ser negativo`);
+
+    let divisible=false;
+
+    for (let i = 2;i > numero; i++){
+        if((numero % i)=== 0){
+            divisible=true
+            break;
+        }
+    }
+    return(divisible)
+    ?console.log(`El número ${numero}, No es primo`)
+    :console.log(`El número ${numero}, Si es primo`)
+}
+numeroPrimo();
+numeroPrimo("320");
+numeroPrimo(true);
+numeroPrimo(0);
+numeroPrimo(1);
+numeroPrimo(-13);
+numeroPrimo(13);
+numeroPrimo(200);
+
+
+
+//13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+
+
+//Funcion expresada 
+
+const nPrimo = (numoPrim = undefined) =>{
+    if(numoPrim === undefined) return console.warn("No ingresaste un número");
+    if(typeof numoPrim!=="number") return console.error(`El valor "${numoPrim}" ingresado, NO es un numero`);
+    if(Math.sign(numoPrim)=== -1) return console.error(`El numero no puede ser negativo`);
+    if(numoPrim % 2 == 0) {
+        return console.log(`El numero ${numoPrim} es true`);
+      }
+      else {
+        return console.log(`El numero ${numoPrim} es impar`);
+      }
+}
+
+nPrimo();
+nPrimo("2");
+nPrimo(0);
+nPrimo(-2);
+nPrimo(2);
+nPrimo(3);
+
+
+
+
+//14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+
+//Funcion declarada 
+
+function convertirCelsiusAFahrenheit(celsius){
+let resultado = celsius * 9 / 5.0 + 32;
+
+return resultado;
+}
+
+function convertirFahrenheitaCelsius(fahrenheit){
+let resultado = (fahrenheit - 32) * 5 / 9.0;
+
+return resultado;
+}
+
+let celsius =0;
+let resultado = convertirCelsiusAFahrenheit(celsius);
+console.log(`${celsius}°C = ${resultado}°F`);
+console.log();
+let fahrenheit=resultado;
+resultado = convertirFahrenheitaCelsius(fahrenheit);
+console.log(`${fahrenheit}°F = ${resultado}°C`);
+
+
+//Funcion expresada
+
+const convertirGrados = (grados=undefined,unidad=undefined)=>{
+if (grados === undefined) return console.warn("No ingresaste grados a convertir");
+if (typeof grados!== "number") return console.error(`El valor "${grados}" ingresado, no es un número`);
+
+if (unidad === undefined) return console.warn("No ingresaste el tipo de grado a convertir");
+
+if(typeof unidad!== "string") return console.error(`El valor "${unidad}" ingresado, No es una cadena de texto`);
+
+if(unidad.length!==1 || !/(C|F)/.test(unidad)) return console.warn("Valor de unidad no reconocido");
+
+if(unidad === "C"){
+    return console.info(`${grados}°C = ${Math.round((grados*(9/5))+32)}°F`);
+}else if(unidad === "F"){
+    return console.info(`${grados}°F = ${Math.round(((grados-32) *(5/9)))}°C`);
+}else  {
+    return console.error("El tipo de grados a convertir NO es válido");
+}
+}
+convertirGrados(100,"C");
+convertirGrados(32,"F")
+
+
+//15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10. 
+
+
+//Funcion expresada
+
+const convertirBinarioDecimal =(numero = undefined, base=undefined) =>{
+if (numero === undefined) return console.warn("No ingresaste el numero a convertir");
+if (typeof numero!== "number") return console.error(`El valor "${numero}" ingresado, no es un número`);
+if (base === undefined) return console.warn("No ingresaste la base a convertir");
+if (typeof base!== "number") return console.error(`El valor "${base}" ingresado, no es un número`);
+
+//Conversion de base binaria a decimal 
+if(base === 2){
+return console.info(`${numero} base ${base} = ${parseInt(numero,base)} base 10`);
+}else if(base ===10){
+return console.info(`${numero} base ${base} = ${numero.toString(2)} base 2`);
+}else{
+console.error("El tipo de grados a converitr NO es válido");
+}
+}
+
+convertirBinarioDecimal();
+convertirBinarioDecimal("2");
+convertirBinarioDecimal(100);
+convertirBinarioDecimal(100,"2");
+convertirBinarioDecimal(100,2);
+convertirBinarioDecimal(1110010,2);
+convertirBinarioDecimal(114,10);
+convertirBinarioDecimal(1994,10);
+convertirBinarioDecimal(11111001010,2);
+convertirBinarioDecimal(1994,3);
+
+
+//16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800
+
+//Funcion expresada
+
+const aplicarDescuento = (monto = undefined, descuento=0) =>{
+if (monto === undefined) return console.warn("No ingresaste el monto");
+if (typeof monto!== "number") return console.warn(`el vlor "${monto}" ingresado, No es un numero`);
+if (monto ===0) return console.error("El monto no puede ser 0");
+if (Math.sign(monto) === -1) return console.error("El monto no puede ser negativo");
+if (typeof descuento!=="number") return console.error(`El valor "${descuento}" ingresado, No es un número`);
+if (Math.sign(descuento) === -1) return console.error("El descuento no puede ser negativo");
+
+return console.info(`${monto} - ${descuento}% =  ${monto - ((monto*descuento) / 100)}`)
+}
+
+aplicarDescuento();
+aplicarDescuento("200");
+aplicarDescuento(0);
+aplicarDescuento(-1000);
+aplicarDescuento(1000,"20");
+aplicarDescuento(1000,-25);
+aplicarDescuento(1000,25);
+aplicarDescuento(25000,50);
+
+
+//17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+
+//Funcion expresada
+
+const calculaAnios = (fecha=undefined) =>{
+if (fecha === undefined) return console.warn("No ingresaste fecha");
+if (!(fecha instanceof Date)) return console.warn("El valor que ingresaste no es una fecha valida");
+
+let hoyMenosFecha = new Date().getTime() - fecha.getTime(),
+aniosEnMS = 1000 * 60 * 60 * 24 * 365
+aniosHumanos = Math.floor(hoyMenosFecha/aniosEnMS);
+
+return (Math.sign(aniosHumanos)=== -1)
+?console.info(`Faltan ${Math.abs(aniosHumanos)} años para el ${fecha.getFullYear()}.`)
+:(Math.sign(aniosHumanos) === 1)
+? console.info(`Han pasado ${aniosHumanos} años, desde ${fecha.getFullYear()}.`)
+:console.info(`Estamos en el año actual ${fecha.getFullYear()}.`)
+}
+calculaAnios();
+calculaAnios({});
+calculaAnios(false);
+calculaAnios(new Date());
+calculaAnios(new Date(1994,3,04));
+calculaAnios(new Date(2084,4,3));
+
+//18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5. 
+
+//funcion expresada
+
+const contarLetras = (cadena = "")=>{
+if (!cadena) return console.warn("No ingresaste una cadena de texto");
+if (typeof cadena!=="string") return console.error(`El valor "${cadena}" ingresado, NO es una cadena de texto`);
+
+let vocales = 0,
+consonantes = 0;
+
+cadena=cadena.toLocaleLowerCase();
+
+for (let letra of cadena){
+if (/[aeiouáéíóúü]/.test(letra)){
+vocales++;
+}
+
+if(/[bcdfghjklmnñpqrstvwxyz]/.test(letra)){
+    consonantes++;
+}
+}
+//Mandar el resultado en un objeto 
+return console.info({
+cadena,
+vocales,
+consonantes
+})
+}
+
+contarLetras();
+contarLetras(3);
+contarLetras("Hola mundo");
+contarLetras("ñoño")
+
+//19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Eduardo") devolverá verdadero.
+
+//funcion expresada
+
+const validarNombre = (nombre="") =>{
+if(!nombre) return console.warn("No ingresaste un nombre");
+if(typeof nombre!== "string") return console.error(`El valor "${nombre}" ingresado, NO es una cadena de texto`);
+
+let expReg =/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(nombre);
+
+return (expReg)
+?console.info(`"${nombre}", es un nombre válido`)
+:console.warn(`"${nombre}", NO es un nombre válido`);
+
+}
+
+validarNombre();
+validarNombre(3);
+validarNombre("Eduardo");
+validarNombre("eduardo, 27");
+
+
+//20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("eduardo@gmail.com") devolverá verdadero.
+
+//funcion expresada
+const validarEmail = (email ="") =>{
+if (!email) return console.warn("No ingresaste tu email");
+if (typeof email!=="string") return console.warn(`El valor "${email}" ingresado, NO es una cadena de texto`);
+
+let expReg = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i.test(email);
+
+return (expReg)
+?console.info(`"${email}", es un emial válido`)
+:console.info(`"${email}", NO es un email válido`);
+}
+validarEmail();
+validarEmail(34);
+validarEmail("eduardopsy1@gmail.com");
+validarEmail("eduardopsy1@gmail");
+
+//21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25]. 
+
+//Funcion expresada
+
+const devolverCuadrados = (arr = undefined) =>{
+if(arr === undefined) return console.warn("No has ingresado un arreglo de números");
+if(!(arr instanceof Array)) return console.warn ("El valor que ingresaste no es un arreglo");
+if (arr.length === 0) return console.warn("El arreglo esta vacio");
+//Iteracion de elementos y evaluar que solamente sean numeros
+for (let num of arr){
+if(typeof num !== "number") return console.error(`El valor "${num}" ingresado, NO es un número`);
+}
+
+const newArr = arr.map(el => el * el);
+
+return console.info(`Arreglo original: ${arr},\nArreglo elevdo al cuadrado: ${newArr}`);
+}
+
+devolverCuadrados();
+devolverCuadrados(true);
+devolverCuadrados({});
+devolverCuadrados([]);//
+devolverCuadrados([1,"3",4,{}]);
+devolverCuadrados([1,2,3,4]);
+
+//22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+
+//Funccion expresada
+const arrayMinMax = (arr=undefined) =>{
+if (arr === undefined) return console.warn("No ingresaste un arreglo de números");
+if(!(arr instanceof Array)) return console.warn("El valor que ingresaste no es un arreglo");
+if(arr.length===0) return console.warn("El arreglo esta vacio");
+//Iteracion de elementos y evaluar que solamente sean numeros
+for(let num of arr){
+if (typeof num!=="number") return console.error(`El valor "${num}" ingresado, NO es un número`);
+}
+return console.info(`Arreglo original: "${arr}"\nValor mayor ${Math.max(...arr)}\nValor menor: ${Math.min(...arr)}`);
+}
+
+arrayMinMax();
+arrayMinMax(false);
+arrayMinMax([]);
+arrayMinMax([2,3,true]);
+arrayMinMax([1,4,5,99,-60]);
+
+//23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+
+
+//Funccion expresada
+const separarParesImpares = (arr = undefined) =>{
+if (arr === undefined) return console.warn("No ingresaste un arreglo de números");
+if(!(arr instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+if(arr.length===0) return console.warn("El arreglo esta vacio");
+//Iteracion de elementos y evaluar que solamente sean numeros
+for(let num of arr){
+if (typeof num!=="number") return console.error(`El valor "${num}" ingresado, NO es un número`);
+}
+return console.info({
+pares: arr.filter(num => num % 2 === 0),
+impares: arr.filter(num => num % 2 ===1)
+})
+}
+
+separarParesImpares();
+separarParesImpares("hola");
+separarParesImpares([]);
+separarParesImpares([1,2,"j"]);
+separarParesImpares([1,2,3,4,5,6,7,8,9,0]);
+
+//24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }. 
+
+const arrNum = (arrNumero = undefined) =>{
+    if (arrNumero === undefined) return console.warn("No ingresaste un arreglo de números");
+    if(!(arrNumero instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+    if(arrNumero.length===0) return console.warn("El arreglo esta vacio");
+    //Iteracion de elementos y evaluar que solamente sean numeros
+    for (let num of arrNumero){
+        if (typeof num!=="number") return console.error(`El valor "${num}" ingresado, NO es un número`);
+    }
+    return console.info({
+        arrNumero,
+        ascendente: arrNumero.map((el) => el).sort((a, b) => a - b),
+        descendente: arrNumero.map((el) => el).sort((a, b) => b - a)
+    });
+}
+arrNum([5,6,7,7,8]);
+arrNum([2,3,4,1,6,7,6,8,5,9,11,13,10,12])
+
+//25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true]. 
+
+const quitarDuplicados = (arrquitDupl = undefined) =>{
+    if (arrquitDupl === undefined) return console.warn("No ingresaste un arreglo de números");
+    if(!(arrquitDupl instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+    if(arrquitDupl.length===0) return console.warn("El arreglo esta vacio");
+    if(arrquitDupl.length===1) return console.warn("El arreglo debe que tener menos 2 elementos");
+
+    /*
+    return console.info({
+        original:arrquitDupl,
+        sinduplicados: arrquitDupl.filter((value,index,self)=> self.indexOf(value) === index)
+    });*/
+
+    /*Utilizando el ojeto set
+    El objeto "set" forma un objeto y elimina sus elementos duplicados*/
+
+    return console.info({
+        original: arrquitDupl,
+        sinDuplicados: [... new Set(arrquitDupl)]
+    })
+};
+
+quitarDuplicados();
+quitarDuplicados({});
+quitarDuplicados([]);
+quitarDuplicados([1]);
+quitarDuplicados(["x",10,"x",2,"10",10,true,true]);
+
+//26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+
+//funcion expresada
+
+const promedio =(numprom = undefined) =>{
+if (numprom === undefined) return console.warn("No ingresaste un arreglo de números");
+if(!(numprom instanceof Array)) return console.error("El valor que ingresaste no es un arreglo");
+if(numprom.length===0) return console.warn("El arreglo esta vacio");
+if(numprom.length===1) return console.warn("El arreglo debe que tener menos 2 elementos");
+//Iteracion de elementos y evaluar que solamente sean numeros
+for (let num of numprom){
+if (typeof num!=="number") return console.error(`El valor "${num}" ingresado, NO es un número`);
+}
+return console.info(
+numprom.reduce((total,num,index,arr)=>{
+    total +=num;
+    if(index === arr.length-1){
+        return `El promedio de ${numprom.join("+")} es ${total/numprom.length}`;
+    }else{
+        return total;
+    }
+})
+)
+}
+promedio();
+promedio({});
+promedio([])
+promedio([2,true]);
+promedio([1,2,3,4,5,6,7,8,9,0]);
+/*
+27) Programa una clase llamada Pelicula. La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+	
+- Todos los datos del objeto son obligatorios. 
+- Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números. 
+- Valida que el título no rebase los 100 caracteres. 
+- Valida que el director no rebase los 50 caracteres. 
+- Valida que el año de estreno sea un número entero de 4 dígitos. 
+- Valida que el país o paises sea introducidos en forma de arreglo. 
+- Valida que los géneros sean introducidos en forma de arreglo. 
+- Valida que los géneros introducidos esten dentro de los géneros aceptados*. 
+- Crea un método estático que devuelva los géneros aceptados*. 
+- Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición. 
+- Crea un método que devuelva toda la ficha técnica de la película. 
+- Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha técnica de cada película. 
+
+* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+
+*/
+class Pelicula {
+    //Constructor de forma destructuracion 
+    constructor({id,titulo,director,estreno,pais,generos,calificacion}){
+        this.id=id;
+        this.titulo=titulo;
+        this.director=director;
+        this.estreno=estreno;
+        this.pais=pais;
+        this.generos=generos;
+        this.calificacion=calificacion;
+
+        this.validarIMDB(id);
+        this.validarTitulo(titulo);
+        this.validarDirector(director);
+        this.validarEstreno(estreno);
+        this.validarPais(pais);
+        this.validarGeneros(generos);
+        this.validarCalificacion(calificacion);
+    }
+    //Creacion de atributo estatico
+    static get listaGeneros(){
+        return["Acción","Aventuras","Comedia","Drama","Fantasía","Musical","Suspense",
+                "Terror", "Crimen","Familia","Fantasia"];
+    }
+    //Creacion de metodo estatico
+    static generosAceptados(){
+        return console.info(`Los generos acpetados son: ${Pelicula.listaGeneros.join(", ")} `)
+    }
+    //Validaciones
+        //Funcion para validar que sea una cadena de texto
+        validarCadena(propiedad,valor){
+            if(!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+            if(typeof valor !== "string") return console.error(`${propiedad} "${valor}" ingresado, No es una cadena de texto`);
+
+            return true
+        }
+        //Funcion para validar la longitud de una cadena 
+        validarLongitudCadena(propiedad,valor,longitud){
+            if(valor.length > longitud) return console.error(`${propiedad} "${valor}" excede el número de caracteres permitidos (${longitud})`);
+            return true
+        }
+        //Funcion para validar que sea un numero
+        validarNumero (propiedad,valor){
+            if(!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+            if(typeof valor!=="number") return console.error(`${propiedad} "${valor}" ingresado, NO es un número`);
+            return true
+        }
+        //Funcion para validar arreglo
+        validarArreglo(propiedad,valor){
+            if(!valor) return console.warn(`${propiedad} "${valor}" esta vacío`);
+            if(!(valor instanceof Array)) return console.error(`${propiedad} "${valor}" ingresado, No es un arreglo`);
+            if(valor.length===0) return console.error(`${propiedad} "${valor}" no tiene datos`);
+            for (let cadena of valor){
+                if(typeof cadena!=="string") return console.error(`El valor "${cadena}"  ingresado, NO es una cadena de texto`);
+            }
+            return true
+        }
+
+    //Metodos
+
+    //Metodo para validar:Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
+    validarIMDB(id){
+        if(this.validarCadena("IMDB id",id))
+            //Validacion de el id IMDB Expresion regular "tt1234567"
+            if(!(/^([a-z]){2}([0-9]){7}$/.test(id)))
+                return console.error(`IMDB id "${id}" no es válido, debe que tener 9 caracteres, los 2 primeras letras minúsculas, los 7 restantes números`);
+    }
+
+    //Metodo para validar:Valida que el título no rebase los 100 caracteres. 
+    validarTitulo(titulo){
+        if(this.validarCadena("Título",titulo))
+            //Ejecucion de la funcion validarLongitudCadena
+            this.validarLongitudCadena("Titulo",titulo,100);
+    }
+    //Metodo para validar:Valida que el director no rebase los 50 caracteres. 
+    validarDirector(director){
+        if(this.validarCadena("Director",director))
+            //Ejecucion de la funcion validarLongitudCadena
+            this.validarLongitudCadena("Director",director,50);
+    }
+    //Metodo para validar:  Valida que el año de estreno sea un número entero de 4 dígitos.
+    validarEstreno(estreno){
+        if(this.validarNumero("Año de Estreno",estreno))
+            if(!(/^([0-9]){4}$/.test(estreno)))
+            return console.error(`Año de Estreno "${estreno}" no es valido, debe ser un número de 4 digitos`);
+    }
+    //Metodo para validar:Valida que el país o paises sea introducidos en forma de arreglo.
+    validarPais(pais){
+        this.validarArreglo("Pais",pais)
+    }
+    //Metodo para validar: Valida que los géneros sean introducidos en forma de arreglo.
+    validarGeneros(generos){
+        if(this.validarArreglo("Generos",generos)){
+            for (const genero of generos) {
+                //console.log(genero, Pelicula.listaGeneros.includes(genero)); 
+                if(!Pelicula.listaGeneros.includes(genero)){
+                    console.error(`Genero(s) incorrectos "${generos.join(", ")}"`);
+                    Pelicula.generosAceptados();
+                }
+            }
+        }
+    }
+    //Metodo para validar:alida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
+    validarCalificacion(calificacion){
+        if(this.validarNumero("Calificacion",calificacion))
+        return (calificacion <0 || calificacion >10)
+        ?console.error(`La calificacion tiene que estar en un rango entre 0 y 10`)
+        :this.calificacion= calificacion.toFixed(1);
+    }
+    //Metodo para imprimir: Crea un método que devuelva toda la ficha técnica de la película.
+    fichaTecnica(){
+        console.info(`Ficha tecnica:\nTítulo: "${this.titulo}"\nDirector: "${this.director}"\nAño: "${this.estreno}"\nPaís: "${this.pais.join("-")}"\nGeneros: "${this.generos.join(", ")}"\nCalificación: "${this.calificacion}"\nIMDB Id: "${this.id}"`)
+    }
+}
+
+const misPelisHD=[
+    {
+        id:"tt1258729",
+        titulo:"trainspotting",
+        director:"Danny Boyle",
+        estreno:1997,
+        pais:["	Reino Unido"],
+        generos:["Drama"],
+        calificacion:10
+    },
+    {
+        id:"tt2568794",
+        titulo:"Requiem for a Dream",
+        director:"Darren Aronofsky",
+        estreno:2000,
+        pais:["Estados Unidos"],
+        generos:["Drama"],
+        calificacion:9
+    },
+    {
+        id:"tt1257891",
+        titulo:"Psicosis",
+        director:"lfred Hitchcock",
+        estreno:1960,
+        pais:["Estados Unidos"],
+        generos:["Terror"],
+        calificacion:7.8
+    }
+]
+
+misPelisHD.forEach(el => new Pelicula(el).fichaTecnica());
+
